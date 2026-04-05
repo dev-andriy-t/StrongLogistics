@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap');
+
+/* ── Theme override ── */
+@theme {
+  --font-sans: 'Manrope', system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  Global Body – Dark background + grid + orbs           */
+/* ═══════════════════════════════════════════════════════ */
+body {
+  margin: 0;
+  background: #03050f;
+  font-family: 'Manrope', system-ui, sans-serif;
+  color: #c8d6f0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(56,98,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,98,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 400px at 10% 15%, rgba(56,98,255,0.12), transparent),
+    radial-gradient(ellipse 500px 350px at 85% 80%, rgba(255,59,59,0.08), transparent);
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  Animations                                            */
+/* ═══════════════════════════════════════════════════════ */
+@keyframes sl-pulse {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes sl-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes sl-fade-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sl-slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes sl-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(56,98,255,0.3); }
+  50%      { box-shadow: 0 0 40px rgba(56,98,255,0.6), 0 0 60px rgba(99,102,241,0.2); }
+}
+
+@keyframes sl-dash {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  Glassmorphism                                         */
+/* ═══════════════════════════════════════════════════════ */
+.sl-glass {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(8, 12, 26, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  Leaflet overrides                                     */
+/* ═══════════════════════════════════════════════════════ */
+.leaflet-tile {
+  filter: brightness(0.7) saturate(0.6) hue-rotate(180deg);
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-container {
+  background: #03050f !important;
+  font-family: 'Manrope', sans-serif !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(8, 12, 26, 0.92) !important;
+  backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 12px !important;
+  color: #c8d6f0 !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(8, 12, 26, 0.92) !important;
+}
+
+.leaflet-popup-close-button {
+  color: #6b7280 !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #c8d6f0 !important;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  Dark scrollbar                                        */
+/* ═══════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #080c1a; }
+::-webkit-scrollbar-thumb { background: #2a3454; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3862ff; }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a3454 #080c1a;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  Form inputs & selects (dark theme)                    */
+/* ═══════════════════════════════════════════════════════ */
+select, input[type="number"], input[type="text"], input[type="password"] {
+  background: rgba(8, 12, 26, 0.8);
+  color: #c8d6f0;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select:focus, input:focus {
+  border-color: rgba(56,98,255,0.5);
+  box-shadow: 0 0 0 3px rgba(56,98,255,0.15);
+}
+
+select option {
+  background: #0d1117;
+  color: #c8d6f0;
+}
+
+/* ═══════════════════════════════════════════════════════ */
+/*  Utility                                               */
+/* ═══════════════════════════════════════════════════════ */
+.sl-gradient-text {
+  background: linear-gradient(135deg, #3862ff, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sl-animate-pulse-ring {
+  animation: sl-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.sl-animate-pulse-ring-delayed {
+  animation: sl-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.5s;
+}
